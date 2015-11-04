@@ -17,8 +17,9 @@ class BoardController extends Controller
     public function index()
     {
         $boards = Board::all();
-
-        return $boards;
+        return \Response::json([
+            'data' => $boards->toArray()
+        ], 200);
     }
 
     /**
@@ -50,7 +51,21 @@ class BoardController extends Controller
      */
     public function show($id)
     {
-        //
+        $board = Board::find($id);
+
+        if ( ! $board)
+        {
+            return \Response::json([
+                'error' => [
+                    'message' => 'Board does not exist'
+                ]
+            ], 404);
+        }
+
+        return \Response::json([
+            'data' => $board->toArray()
+        ], 200);
+
     }
 
     /**

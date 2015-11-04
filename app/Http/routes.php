@@ -15,10 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('boards', 'BoardController@index');
+//Route::get('boards', 'BoardController@index');
+//
+////TODO: should be route: boards/{id}/columns
+//Route::get('columns', 'ColumnController@index');
+//
+////TODO: should be route: boards/{id}/columns/{id}/cards
+//Route::get('cards', 'CardController@index');
 
-//TODO: should be route: boards/{id}/columns
-Route::get('columns', 'ColumnController@index');
+Route::group(['prefix' => 'api/v1'], function()
+{
+    Route::resource('boards', 'BoardController');
+});
 
-//TODO: should be route: boards/{id}/columns/{id}/cards
-Route::get('cards', 'CardController@index');
