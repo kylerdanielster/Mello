@@ -12,9 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->truncate();
+        DB::table('boards')->truncate();
+
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        $this->call('UserTableSeeder');
+        $this->call('BoardTableSeeder');
+
 
         Model::reguard();
     }

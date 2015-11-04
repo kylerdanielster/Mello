@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Board extends Model
 {
     //TODO: Maybe need A 'protected $fillable[]'
+    protected $fillable = ['board_name'];
     /**
      * A board is owned by a user.
      *
@@ -15,5 +16,10 @@ class Board extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function columns()
+    {
+        return $this->hasMany('App\Column');
     }
 }
